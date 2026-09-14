@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://bvki7n8irimdn"]
 
-[node name="Main" type="Node3D" unique_id=1897197560]
+[ext_resource type="Shader" uid="uid://mrwgv8pbiadw" path="res://Src/Scripts/Shaders/reel.gdshader" id="1_fcfor"]
+[ext_resource type="Texture2D" uid="uid://cgy6vayvg7j65" path="res://icon.svg" id="2_8cdi6"]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=52888902]
-projection = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0uc2"]
+shader = ExtResource("1_fcfor")
+shader_parameter/radius = 0.0
+shader_parameter/speed = 1.0
+
+[node name="Main" type="Node2D" unique_id=23177433]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=32659921]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_t0uc2")
+texture = ExtResource("2_8cdi6")

@@ -7,7 +7,7 @@ extends Control
 
 @onready var shader : ShaderMaterial = image.material
 
-var grid_sizes : Array[float] = [480, 240, 120, 60, 30, 15, 7.5]
+var grid_sizes : Array[float] = [60, 30, 15, 7.5]
 
 func _ready() -> void:
 	#set default parameters

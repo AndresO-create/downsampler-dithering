@@ -1,14 +1,50 @@
 [gd_scene format=3 uid="uid://bvki7n8irimdn"]
 
 [ext_resource type="Shader" uid="uid://c0ufcrsucan3k" path="res://Src/Scripts/Shaders/halftone.gdshader" id="1_8cdi6"]
-[ext_resource type="Texture2D" uid="uid://boj624w14cgok" path="res://Assets/lighthouse.jpg" id="2_8cdi6"]
+[ext_resource type="Texture2D" uid="uid://6i01qf4l4sws" path="res://Assets/crying_apple.jpg" id="2_8cdi6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0uc2"]
 shader = ExtResource("1_8cdi6")
-shader_parameter/radius = 0.3499999921768
+shader_parameter/radius = 0.499999988824
 shader_parameter/grid_size = 64.0
-shader_parameter/pixel_size = 1.0
-shader_parameter/image_res = Vector2(1152, 648)
+shader_parameter/pixel_size = 2.0
+shader_parameter/image_res = Vector2(480, 480)
+
+[sub_resource type="Animation" id="Animation_t0uc2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_roi0c"]
+resource_name = "WOW"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/pixel_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [128.0, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4sw6a"]
+_data = {
+&"RESET": SubResource("Animation_t0uc2"),
+&"WOW": SubResource("Animation_roi0c")
+}
 
 [node name="Main" type="Node2D" unique_id=23177433]
 
@@ -16,3 +52,9 @@ shader_parameter/image_res = Vector2(1152, 648)
 texture_repeat = 2
 material = SubResource("ShaderMaterial_t0uc2")
 texture = ExtResource("2_8cdi6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1855338382]
+libraries/ = SubResource("AnimationLibrary_4sw6a")
+autoplay = &"WOW"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1842751555]

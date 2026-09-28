@@ -95,14 +95,14 @@ vec3 set_color(float luminance) {
 
 void fragment() {
 	vec2 normalPixel = pixel_size/image_res;
+	
 	vec2 pixelUV = normalPixel * floor(UV/normalPixel);
-	
-	vec2 cell_uv = fract(pixelUV * grid_size); //divide UV coordinates into desired number of grids and take decimal point
-	
-	float dist = length(cell_uv - 0.5);
+	vec4 color = texture(TEXTURE, pixelUV);
+
+	vec2 cellUv = fract(UV / normalPixel); //divide UV coordinates into desired number of pixels and take decimal point
+	float dist = length(cellUv - 0.5);
 	float relative_radius = radius * max(UV.x, radius); //find the relative radius of the image by first finding the maximum between the current UV position and the radius, then multiplying that value by the radius
 	
-	vec4 color = texture(TEXTURE, pixelUV);
 	float luma = dot(vec3(0.2126, 0.7152, 0.0722), color.rgb);
 	float radius_lum = radius * (0.1 + luma);
 	
@@ -111,7 +111,7 @@ void fragment() {
 
 	
 	float circle = smoothstep(radius - 0.01, radius + 0.01, dist);
-; //return either 1 or 0 if distance is greater than radius
+ //return either 1 or 0 if distance is greater than radius
 	if (lum_radius)
 		circle = smoothstep(radius_lum - 0.01, radius_lum + 0.01, dist);
 	else

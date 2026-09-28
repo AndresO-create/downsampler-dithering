@@ -3,15 +3,16 @@
 [ext_resource type="Shader" uid="uid://c0ufcrsucan3k" path="res://Src/Scripts/Shaders/halftone.gdshader" id="1_8cdi6"]
 [ext_resource type="Texture2D" uid="uid://6i01qf4l4sws" path="res://Assets/crying_apple.jpg" id="2_8cdi6"]
 [ext_resource type="AudioStream" uid="uid://cflxwkgjp00ky" path="res://Assets/kids-saying-yay-sound-effect_3.mp3" id="3_t0uc2"]
+[ext_resource type="Script" uid="uid://xcxstdrk5eqg" path="res://Src/Scripts/ui.gd" id="4_roi0c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0uc2"]
 shader = ExtResource("1_8cdi6")
 shader_parameter/radius = 0.499999988824
-shader_parameter/grid_size = 24.0
+shader_parameter/grid_size = 1.0
 shader_parameter/pixel_size = 2.0
 shader_parameter/image_res = Vector2(480, 480)
-shader_parameter/lum_radius = true
-shader_parameter/palette_swap = true
+shader_parameter/lum_radius = false
+shader_parameter/palette_swap = false
 shader_parameter/selected_palette = 4
 
 [sub_resource type="Animation" id="Animation_t0uc2"]
@@ -92,11 +93,15 @@ autoplay = &"WOW"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D" unique_id=423021758]
 stream = ExtResource("3_t0uc2")
 
-[node name="UI" type="Control" parent="." unique_id=1320988039]
+[node name="UI" type="Control" parent="." unique_id=1320988039 node_paths=PackedStringArray("image", "grid_size", "pixel_size")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("4_roi0c")
+image = NodePath("../Sprite2D")
+grid_size = NodePath("GridSize")
+pixel_size = NodePath("PixelSize")
 
 [node name="GridSize" type="HSlider" parent="UI" unique_id=1320594903]
 layout_mode = 0
@@ -104,10 +109,8 @@ offset_left = -236.0
 offset_top = 240.0
 offset_right = 239.0
 offset_bottom = 256.0
-min_value = 2.0
-max_value = 64.0
-value = 2.0
-exp_edit = true
+max_value = 3.0
+value = 3.0
 rounded = true
 
 [node name="PixelSize" type="HSlider" parent="UI" unique_id=556563150]
@@ -116,3 +119,29 @@ offset_left = -236.0
 offset_top = 256.0
 offset_right = 239.0
 offset_bottom = 272.0
+min_value = 2.0
+max_value = 16.0
+step = 2.0
+value = 2.0
+rounded = true
+
+[node name="Dropdown" type="MenuButton" parent="UI" unique_id=1805882367]
+layout_mode = 0
+offset_left = 148.0
+offset_top = -224.0
+offset_right = 232.0
+offset_bottom = -193.0
+text = "Advanced"
+flat = false
+item_count = 2
+popup/item_0/text = "Use Lumens"
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+popup/item_1/text = "Palette Swap"
+popup/item_1/checkable = 1
+popup/item_1/checked = true
+popup/item_1/id = 1
+
+[connection signal="value_changed" from="UI/GridSize" to="UI" method="_on_grid_size_value_changed"]
+[connection signal="value_changed" from="UI/PixelSize" to="UI" method="_on_pixel_size_value_changed"]

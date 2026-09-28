@@ -110,7 +110,8 @@ void fragment() {
 	color.rgb = palette_swap ? set_color(luma) : color.rgb;
 
 	
-	float circle; //return either 1 or 0 if distance is greater than radius
+	float circle = smoothstep(radius - 0.01, radius + 0.01, dist);
+; //return either 1 or 0 if distance is greater than radius
 	if (lum_radius)
 		circle = smoothstep(radius_lum - 0.01, radius_lum + 0.01, dist);
 	else

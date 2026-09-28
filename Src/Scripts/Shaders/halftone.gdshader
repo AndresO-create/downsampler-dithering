@@ -106,7 +106,8 @@ void fragment() {
 	float luma = dot(vec3(0.2126, 0.7152, 0.0722), color.rgb);
 	float radius_lum = radius * (0.1 + luma);
 	
-	if (palette_swap) color.rgb = set_color(luma);
+	//if palette_swap is enabled, swap palette now
+	color.rgb = palette_swap ? set_color(luma) : color.rgb;
 
 	
 	float circle; //return either 1 or 0 if distance is greater than radius

@@ -31,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/path = NodePath("Sprite2D/AudioStreamPlayer:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -58,7 +58,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = false
-tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/path = NodePath("Sprite2D/AudioStreamPlayer:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -76,16 +76,43 @@ _data = {
 
 [node name="Main" type="Node2D" unique_id=23177433]
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1842751555]
+offset = Vector2(0, 16)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=32659921]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_t0uc2")
 texture = ExtResource("2_8cdi6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1855338382]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1855338382]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_4sw6a")
 autoplay = &"WOW"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1842751555]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=423021758]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D" unique_id=423021758]
 stream = ExtResource("3_t0uc2")
+
+[node name="UI" type="Control" parent="." unique_id=1320988039]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridSize" type="HSlider" parent="UI" unique_id=1320594903]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 240.0
+offset_right = 239.0
+offset_bottom = 256.0
+min_value = 2.0
+max_value = 64.0
+value = 2.0
+exp_edit = true
+rounded = true
+
+[node name="PixelSize" type="HSlider" parent="UI" unique_id=556563150]
+layout_mode = 0
+offset_left = -236.0
+offset_top = 256.0
+offset_right = 239.0
+offset_bottom = 272.0

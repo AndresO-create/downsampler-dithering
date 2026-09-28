@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="shader challenge Sepetember"
+run/main_scene="uid://bvki7n8irimdn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=480
-window/size/viewport_height=480
+window/size/viewport_height=512
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

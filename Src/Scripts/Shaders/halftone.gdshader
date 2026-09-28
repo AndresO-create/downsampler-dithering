@@ -15,7 +15,7 @@ uniform float radius : hint_range(0.01, 0.5, 0.01) = 0.25;
 uniform float grid_size : hint_range(1.0, 64.0 , 1.0) = 1.0;
 
 //size of each pixel in the image
-uniform float pixel_size : hint_range(2.0, 128.0, 2.0) = 2.0;
+uniform float pixel_size = 2.0;
 
 //holds the resolution of the image
 uniform vec2 image_res;

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://6i01qf4l4sws" path="res://Assets/crying_apple.jpg" id="2_8cdi6"]
 [ext_resource type="AudioStream" uid="uid://cflxwkgjp00ky" path="res://Assets/kids-saying-yay-sound-effect_3.mp3" id="3_t0uc2"]
 [ext_resource type="Script" uid="uid://xcxstdrk5eqg" path="res://Src/Scripts/ui.gd" id="4_roi0c"]
-[ext_resource type="Texture2D" uid="uid://cpaqrten37qe2" path="res://Assets/UI.png" id="5_4sw6a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t0uc2"]
 shader = ExtResource("1_8cdi6")
@@ -76,6 +75,46 @@ _data = {
 &"WOW": SubResource("Animation_roi0c")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4sw6a"]
+shader = ExtResource("1_8cdi6")
+shader_parameter/radius = 0.3499999921768
+shader_parameter/grid_size = 1.0
+shader_parameter/pixel_size = 8.0
+shader_parameter/image_res = Vector2(16, 16)
+shader_parameter/lum_radius = false
+shader_parameter/palette_swap = false
+shader_parameter/selected_palette = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4y6cq"]
+shader = ExtResource("1_8cdi6")
+shader_parameter/radius = 0.25
+shader_parameter/grid_size = 1.0
+shader_parameter/pixel_size = 4.0
+shader_parameter/image_res = Vector2(16, 16)
+shader_parameter/lum_radius = false
+shader_parameter/palette_swap = false
+shader_parameter/selected_palette = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_roi0c"]
+shader = ExtResource("1_8cdi6")
+shader_parameter/radius = 0.1499999966472
+shader_parameter/grid_size = 1.0
+shader_parameter/pixel_size = 16.0
+shader_parameter/image_res = Vector2(16, 16)
+shader_parameter/lum_radius = false
+shader_parameter/palette_swap = false
+shader_parameter/selected_palette = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7uas"]
+shader = ExtResource("1_8cdi6")
+shader_parameter/radius = 0.499999988824
+shader_parameter/grid_size = 1.0
+shader_parameter/pixel_size = 16.0
+shader_parameter/image_res = Vector2(16, 16)
+shader_parameter/lum_radius = false
+shader_parameter/palette_swap = false
+shader_parameter/selected_palette = 0
+
 [node name="Main" type="Node2D" unique_id=23177433]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1842751555]
@@ -113,22 +152,24 @@ offset_bottom = 256.0
 max_value = 3.0
 value = 3.0
 rounded = true
+tick_count = 4
+ticks_position = 3
 
-[node name="Small" type="Sprite2D" parent="UI/GridSize" unique_id=260050707]
+[node name="Small" type="ColorRect" parent="UI/GridSize" unique_id=30172833]
 texture_filter = 1
-position = Vector2(-15, 9)
-texture = ExtResource("5_4sw6a")
-hframes = 2
-vframes = 2
-frame = 2
+material = SubResource("ShaderMaterial_4sw6a")
+layout_mode = 0
+offset_left = -24.0
+offset_right = -8.0
+offset_bottom = 16.0
 
-[node name="Large" type="Sprite2D" parent="UI/GridSize" unique_id=1170730778]
+[node name="Large" type="ColorRect" parent="UI/GridSize" unique_id=97637523]
 texture_filter = 1
-position = Vector2(431, 9)
-texture = ExtResource("5_4sw6a")
-hframes = 2
-vframes = 2
-frame = 3
+material = SubResource("ShaderMaterial_4y6cq")
+layout_mode = 0
+offset_left = 424.0
+offset_right = 440.0
+offset_bottom = 16.0
 
 [node name="Radius" type="HSlider" parent="UI" unique_id=556563150]
 layout_mode = 0
@@ -141,20 +182,21 @@ max_value = 5.0
 step = 0.1
 value = 5.0
 
-[node name="Small" type="Sprite2D" parent="UI/Radius" unique_id=816678389]
+[node name="Small" type="ColorRect" parent="UI/Radius" unique_id=510478788]
 texture_filter = 1
-position = Vector2(-16, 8)
-texture = ExtResource("5_4sw6a")
-hframes = 2
-vframes = 2
+material = SubResource("ShaderMaterial_roi0c")
+layout_mode = 0
+offset_left = -24.0
+offset_right = -8.0
+offset_bottom = 16.0
 
-[node name="Large" type="Sprite2D" parent="UI/Radius" unique_id=1777545952]
+[node name="Large" type="ColorRect" parent="UI/Radius" unique_id=522664341]
 texture_filter = 1
-position = Vector2(431, 8)
-texture = ExtResource("5_4sw6a")
-hframes = 2
-vframes = 2
-frame = 1
+material = SubResource("ShaderMaterial_l7uas")
+layout_mode = 0
+offset_left = 424.0
+offset_right = 440.0
+offset_bottom = 16.0
 
 [node name="Dropdown" type="MenuButton" parent="UI" unique_id=1812909655]
 layout_mode = 0
@@ -174,3 +216,4 @@ popup/item_1/id = 1
 
 [connection signal="value_changed" from="UI/GridSize" to="UI" method="_on_grid_size_value_changed"]
 [connection signal="value_changed" from="UI/Radius" to="UI" method="_on_radius_value_changed"]
+[connection signal="pressed" from="UI/Dropdown" to="UI" method="_on_dropdown_pressed"]

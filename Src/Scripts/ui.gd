@@ -31,3 +31,7 @@ func _on_dropdown_item_pressed(id : int) -> void:
 	match id:
 		0: shader.set_shader_parameter("lum_radius", value)
 		1: shader.set_shader_parameter("palette_swap", value)
+
+
+func _on_palette_item_selected(index: int) -> void:
+	shader.set_shader_parameter("selected_palette", index)

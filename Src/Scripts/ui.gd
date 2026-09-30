@@ -34,4 +34,4 @@ func _on_dropdown_item_pressed(id : int) -> void:
 
 
 func _on_palette_item_selected(index: int) -> void:
-	shader.set_shader_parameter("selected_palette", index)
+	shader.set_shader_parameter("selected_palette", index - 1)
